@@ -10,10 +10,10 @@
 void TestCanvas::initRand(unsigned seed)
 {
     static bool inited = false;
-    if (!inited) {
+    //if (!inited) {
         inited = true;
         srand(seed);
-    }
+    //}
 }
 
 int TestCanvas::randInt(int minv, int maxv)
@@ -21,7 +21,7 @@ int TestCanvas::randInt(int minv, int maxv)
     return rand() % (maxv - minv + 1) + minv;
 }
 
-int TestCanvas::randFloat(float minv, float maxv, float div)
+float TestCanvas::randFloat(float minv, float maxv, float div)
 {
     int range = (int)((maxv - minv) * div);
     return (float)(rand() % range) / div + minv;
