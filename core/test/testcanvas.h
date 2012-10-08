@@ -17,4 +17,6 @@ struct TestCanvas {
     static void testQuadBezier(GiCanvas* canvas);
     static void testCubicBezier(GiCanvas* canvas);
     static void testPolygon(GiCanvas* canvas);
+    
+    static void testClipPath(GiCanvas* canvas);
 };

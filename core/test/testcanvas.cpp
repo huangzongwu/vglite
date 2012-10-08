@@ -9,10 +9,10 @@
 
 void TestCanvas::initRand(unsigned seed)
 {
-    static bool inited = false;
+    //static bool inited = false;
     //if (!inited) {
-        inited = true;
-        srand(seed);
+    //inited = true;
+    srand(seed);
     //}
 }
 
@@ -141,5 +141,41 @@ void TestCanvas::testPolygon(GiCanvas* canvas)
         canvas->penChanged(0x8F000000 | randInt(0, 0xFFFFFF), -1.f, -1);
         canvas->brushChanged(0x41000000 | randInt(0, 0xFFFFFF), 0);
         canvas->drawPath(randInt(0, 1) == 1, randInt(0, 1) == 1);
+    }
+}
+
+void TestCanvas::testClipPath(GiCanvas* canvas)
+{
+    for (int i = 0; i < 5; i++) {
+        canvas->beginTransparencyLayer();
+        canvas->clipRect(randFloat(10.f, 500.f), randFloat(10.f, 500.f),
+                         randFloat(50.f, 200.f), randFloat(50.f, 200.f));
+        testLine(canvas);
+        testCubicBezier(canvas);
+        testEllipse(canvas);
+        testPolygon(canvas);
+        canvas->endTransparencyLayer();
+    }
+    for (int j = 0; j < 5; j++) {
+        canvas->beginTransparencyLayer();
+        canvas->beginPath();
+        
+        float x = randFloat(200.f, 800.f);
+        float y = randFloat(200.f, 800.f);
+        canvas->moveTo(x, y);
+        
+        for (int j = randInt(1, 5); j > 0; j--) {
+            canvas->lineTo(x += randFloat(-200.f, 200.f), y += randFloat(-200.f, 200.f));
+        }
+        canvas->closePath();
+        canvas->clipPath();
+        
+        canvas->penChanged(0x41000000 | randInt(0, 0xFFFFFF), -1.f, randInt(0, 4));
+        canvas->brushChanged(0x11000000 | randInt(0, 0xFFFFFF), 0);
+        canvas->drawPath(true, true);
+        
+        testCubicBezier(canvas);
+        testEllipse(canvas);
+        canvas->endTransparencyLayer();
     }
 }

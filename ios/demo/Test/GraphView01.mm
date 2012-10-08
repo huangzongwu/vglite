@@ -15,7 +15,7 @@
     if (self) {
         self.contentMode = UIViewContentModeRedraw; // 不缓存图像，每次重画
         self.opaque = NO;
-        self.clearsContextBeforeDrawing = NO;
+        self.clearsContextBeforeDrawing = YES;
         
         TestCanvas::initRand();
     }
@@ -55,6 +55,8 @@
         TestCanvas::testCubicBezier(canvas);
     if (tests & 0x40)
         TestCanvas::testPolygon(canvas);
+    if (tests & 0x100)
+        TestCanvas::testClipPath(canvas);
 }
 
 @end

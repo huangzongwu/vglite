@@ -39,6 +39,7 @@ public class DummyContent {
     	addItem("touchvg.test.GraphView01", 0x10, "testQuadBezier");
     	addItem("touchvg.test.GraphView01", 0x20, "testCubicBezier");
     	addItem("touchvg.test.GraphView01", 0x40, "testPolygon");
+        addItem("touchvg.test.GraphView01", 0x100, "testClipPath");
     }
     
     private static void addItem(String id, int flags, String title) {
