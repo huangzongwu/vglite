@@ -8,8 +8,6 @@ package touchvg.demo;
 import touchvg.test.TestView;
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
 
 public class DummyActivity extends Activity {
 
@@ -21,10 +19,13 @@ public class DummyActivity extends Activity {
         TestView view = TestView.createView(this, bundle.getString("className"), bundle.getInt("flags"));
         
         if (view != null) {
-        	view.setLayoutParams(new ViewGroup.LayoutParams(
-    				LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
         	this.setContentView(view);
         	this.setTitle(bundle.getString("title"));
         }
+    }
+    
+    @Override
+    public void onDestroy() {
+    	super.onDestroy();
     }
 }

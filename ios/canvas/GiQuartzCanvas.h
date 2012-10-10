@@ -19,8 +19,8 @@ public:
     void penChanged(int argb, float width, int style);
     void brushChanged(int argb, int style);
     void antiAliasChanged(bool antiAlias);
-    void beginTransparencyLayer();
-    void endTransparencyLayer();
+    void saveClip();
+    void restoreClip();
     void clearRect(float x, float y, float w, float h);
     void drawRect(float x, float y, float w, float h, bool stroke, bool fill);
     void clipRect(float x, float y, float w, float h);

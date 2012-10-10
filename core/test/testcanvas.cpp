@@ -147,17 +147,17 @@ void TestCanvas::testPolygon(GiCanvas* canvas)
 void TestCanvas::testClipPath(GiCanvas* canvas)
 {
     for (int i = 0; i < 5; i++) {
-        canvas->beginTransparencyLayer();
+        canvas->saveClip();
         canvas->clipRect(randFloat(10.f, 500.f), randFloat(10.f, 500.f),
                          randFloat(50.f, 200.f), randFloat(50.f, 200.f));
         testLine(canvas);
         testCubicBezier(canvas);
         testEllipse(canvas);
         testPolygon(canvas);
-        canvas->endTransparencyLayer();
+        canvas->restoreClip();
     }
     for (int j = 0; j < 5; j++) {
-        canvas->beginTransparencyLayer();
+        canvas->saveClip();
         canvas->beginPath();
         
         float x = randFloat(200.f, 800.f);
@@ -176,6 +176,6 @@ void TestCanvas::testClipPath(GiCanvas* canvas)
         
         testCubicBezier(canvas);
         testEllipse(canvas);
-        canvas->endTransparencyLayer();
+        canvas->restoreClip();
     }
 }

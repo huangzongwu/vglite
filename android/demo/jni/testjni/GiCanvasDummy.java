@@ -58,13 +58,13 @@ public class GiCanvasDummy extends GiCanvas {
     }
 
     @Override
-    public void beginTransparencyLayer() {
-        System.err.println(this + ".beginTransparencyLayer()");
+    public void saveClip() {
+        System.err.println(this + ".saveClip()");
     }
 
     @Override
-    public void endTransparencyLayer() {
-        System.err.println(this + ".endTransparencyLayer()");
+    public void restoreClip() {
+        System.err.println(this + ".restoreClip()");
     }
 
     @Override

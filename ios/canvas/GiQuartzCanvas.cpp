@@ -82,12 +82,12 @@ void GiQuartzCanvas::antiAliasChanged(bool antiAlias)
     CGContextSetAllowsAntialiasing(_ctx, antiAlias);
 }
 
-void GiQuartzCanvas::beginTransparencyLayer()
+void GiQuartzCanvas::saveClip()
 {
     CGContextBeginTransparencyLayer(_ctx, NULL);
 }
 
-void GiQuartzCanvas::endTransparencyLayer()
+void GiQuartzCanvas::restoreClip()
 {
     CGContextEndTransparencyLayer(_ctx);
 }

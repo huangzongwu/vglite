@@ -14,8 +14,8 @@ struct GiCanvas
     virtual void brushChanged(int argb, int style) = 0;
     virtual void antiAliasChanged(bool antiAlias) = 0;
     
-    virtual void beginTransparencyLayer() = 0;
-    virtual void endTransparencyLayer() = 0;
+    virtual void saveClip() = 0;
+    virtual void restoreClip() = 0;
 
     virtual void clearRect(float x, float y, float w, float h) = 0;
     virtual void drawRect(float x, float y, float w, float h, bool stroke, bool fill) = 0;

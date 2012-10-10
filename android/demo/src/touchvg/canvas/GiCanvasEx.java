@@ -31,6 +31,12 @@ public class GiCanvasEx extends GiCanvas {
     
 	public GiCanvasEx() {
     }
+	
+	@Override
+	public synchronized void delete() {		// Override for debug it.
+		if (getCPtr(this) != 0)
+			super.delete();
+	}
     
     public Canvas getCanvas() {
         return mCanvas;
@@ -104,12 +110,12 @@ public class GiCanvasEx extends GiCanvas {
     }
 
     @Override
-    public void beginTransparencyLayer() {
-    	mCanvas.save();
+    public void saveClip() {
+    	mCanvas.save(Canvas.CLIP_SAVE_FLAG);
     }
 
     @Override
-    public void endTransparencyLayer() {
+    public void restoreClip() {
     	mCanvas.restore();
     }
 
