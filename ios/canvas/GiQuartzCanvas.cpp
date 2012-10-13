@@ -42,23 +42,22 @@ static inline float colorPart(int argb, int bit)
 
 void GiQuartzCanvas::penChanged(int argb, float width, int style)
 {
+    const CGFloat patDash[]      = { 5, 5, 0 };
+    const CGFloat patDot[]       = { 1, 2, 0 };
+    const CGFloat patDashDot[]   = { 10, 2, 2, 2, 0 };
+    const CGFloat dashDotdot[]   = { 20, 2, 2, 2, 2, 2, 0 };
+    const CGFloat* const lpats[] = { NULL, patDash, patDot, patDashDot, dashDotdot };
+    
     CGContextSetRGBStrokeColor(_ctx, colorPart(argb, 16), colorPart(argb, 8),
                                colorPart(argb, 0), colorPart(argb, 24));
     if (width > 0)
         CGContextSetLineWidth(_ctx, width);
     
-    const CGFloat patDash[]      = { 5, 5, 0 };
-    const CGFloat patDot[]       = { 1, 2, 0 };
-    const CGFloat patDashDot[]   = { 10, 2, 2, 2, 0 };
-    const CGFloat dashDotdot[]   = { 20, 2, 2, 2, 2, 2, 0 };
-    const CGFloat* const lpats[] = { patDash, patDot, patDashDot, dashDotdot };
-    
-    if (style > 0 && style <= sizeof(lpats)/sizeof(lpats[0])) {
-        const CGFloat* pats = lpats[style - 1];
+    if (style > 0 && style < sizeof(lpats)/sizeof(lpats[0])) {
         CGFloat pattern[6];
         int n = 0;
-        for (; pats[n] > 0.1f; n++) {
-            pattern[n] = pats[n] * (width < 1.f ? 1.f : width);
+        for (; lpats[style][n] > 0.1f; n++) {
+            pattern[n] = lpats[style][n] * (width < 1.f ? 1.f : width);
         }
         CGContextSetLineDash(_ctx, 0, pattern, n);
         CGContextSetLineCap(_ctx, kCGLineCapButt);
