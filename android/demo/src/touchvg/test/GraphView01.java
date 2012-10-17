@@ -27,6 +27,9 @@ public class GraphView01 extends GraphView {
 	        TestCanvas.testCubicBezier(canvas);
 	    if (hasFlag(0x40))
 	        TestCanvas.testPolygon(canvas);
+        if (hasFlag(0x80)) {
+            canvas.clearRect(100, 100, 400, 400);
+        }
         if (hasFlag(0x100))
             TestCanvas.testClipPath(canvas);
 	}

@@ -24,6 +24,7 @@ bool GiQuartzCanvas::beginPaint(CGContextRef context)
     CGContextSetShouldAntialias(_ctx, true);        // 两者都为true才反走样
     CGContextSetAllowsAntialiasing(_ctx, true);
     
+    CGContextSetLineCap(_ctx, kCGLineCapRound);     // 圆端
     CGContextSetLineJoin(_ctx, kCGLineJoinRound);   // 折线转角圆弧过渡
 
     CGContextSetRGBFillColor(_ctx, 0, 0, 0, 0);     // 默认不填充

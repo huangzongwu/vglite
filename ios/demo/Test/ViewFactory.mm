@@ -50,6 +50,10 @@ void getViewControllers(NSMutableArray *arr)
     addView(arr, @"testPolygon", view1);
     
     view1 = [[GraphView01 alloc]initWithFrame:CGRectNull];
+    view1.tests = 0x80 | 0x40 | 0x02;
+    addView(arr, @"testClearRect", view1);
+    
+    view1 = [[GraphView01 alloc]initWithFrame:CGRectNull];
     view1.tests = 0x100;
     addView(arr, @"testClipPath", view1);
 }
