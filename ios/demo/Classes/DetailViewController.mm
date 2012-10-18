@@ -79,6 +79,7 @@
     if ([_content.view isKindOfClass:[GraphViewBase class]]) {
         GraphViewBase *gview = (GraphViewBase *)_content.view;
         [gview saveAsPdf];
+        [gview saveAsPng];
     }
 }
 

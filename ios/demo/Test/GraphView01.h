@@ -12,6 +12,7 @@ struct GiCanvas;
 
 - (void)drawInCanvas:(GiCanvas*)canvas;
 - (void)saveAsPdf;
+- (void)saveAsPng;
 
 @end
 

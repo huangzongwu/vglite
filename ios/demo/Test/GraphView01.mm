@@ -65,6 +65,35 @@
     }
 }
 
+- (void)saveAsPng
+{
+    UIGraphicsBeginImageContext(self.bounds.size);
+    
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGContextSetTextMatrix(ctx, CGAffineTransformMake(1, 0, 0, -1, 0, self.bounds.size.height));
+    
+    GiQuartzCanvas canvas;
+    
+    if (canvas.beginPaint(ctx)) {
+        TestCanvas::initRand();
+        [self drawInCanvas:&canvas];
+        canvas.endPaint();
+    }
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, 
+                                                          NSUserDomainMask, YES) objectAtIndex:0];
+    static int order = 0;
+    NSString *filename = [NSString stringWithFormat:@"%@/page%d.png", path, ++order % 10];
+    
+    NSData* imageData = UIImagePNGRepresentation(image);
+    if (imageData) {
+        [imageData writeToFile:filename atomically:NO];                 
+    }
+}
+
 @end
 
 @implementation GraphView01
