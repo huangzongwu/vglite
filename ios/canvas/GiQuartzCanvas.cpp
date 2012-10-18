@@ -85,12 +85,12 @@ void GiQuartzCanvas::antiAliasChanged(bool antiAlias)
 
 void GiQuartzCanvas::saveClip()
 {
-    CGContextBeginTransparencyLayer(_ctx, NULL);
+    CGContextSaveGState(_ctx);
 }
 
 void GiQuartzCanvas::restoreClip()
 {
-    CGContextEndTransparencyLayer(_ctx);
+    CGContextRestoreGState(_ctx);
 }
 
 void GiQuartzCanvas::clearRect(float x, float y, float w, float h)
