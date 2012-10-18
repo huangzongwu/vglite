@@ -10,4 +10,7 @@
 
 @property (nonatomic, retain) UIViewController *content;
 
+- (void)editDetailPage:(id)sender;
+- (void)saveDetailPage:(id)sender;
+
 @end

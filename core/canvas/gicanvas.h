@@ -34,7 +34,7 @@ public:
     virtual void antiAliasChanged(bool antiAlias) = 0;
 
     
-    /** 清除指定矩形区域的显示内容，透明显示 */
+    /** 清除指定矩形区域的显示内容，透明显示，仅用于在视图和图像上的绘制 */
     virtual void clearRect(float x, float y, float w, float h) = 0;
     
     /** 显示矩形框，可描边和填充 */

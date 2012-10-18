@@ -11,6 +11,7 @@ struct GiCanvas;
 @interface GraphViewBase : UIView
 
 - (void)drawInCanvas:(GiCanvas*)canvas;
+- (void)saveAsPdf;
 
 @end
 

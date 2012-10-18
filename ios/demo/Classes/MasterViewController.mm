@@ -41,6 +41,14 @@ void getViewControllers(NSMutableArray *arr);
 {
     _objects = [[NSMutableArray alloc] init];
     getViewControllers(_objects);
+    
+    UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:_detailViewController action:@selector(editDetailPage:)];
+    self.navigationItem.leftBarButtonItem = editButton;
+    [editButton release];
+    
+    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:_detailViewController action:@selector(saveDetailPage:)];
+    self.navigationItem.rightBarButtonItem = saveButton;
+    [saveButton release];
 }
 
 - (void)viewDidUnload

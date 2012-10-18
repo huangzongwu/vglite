@@ -10,11 +10,7 @@
 
 void TestCanvas::initRand(unsigned seed)
 {
-    //static bool inited = false;
-    //if (!inited) {
-    //inited = true;
     srand(seed);
-    //}
 }
 
 int TestCanvas::randInt(int minv, int maxv)
@@ -30,45 +26,45 @@ float TestCanvas::randFloat(float minv, float maxv, float div)
 
 void TestCanvas::testRect(GiCanvas* canvas)
 {
-    for (int i = 0; i < 100; i++) {
-        canvas->drawRect(randFloat(-20.f, 800.f), randFloat(-20.f, 800.f),
-                         randFloat(-20.f, 500.f), randFloat(-20.f, 500.f),
+    for (int i = 0; i < 500; i++) {
+        canvas->drawRect(randFloat(10.f, 600.f), randFloat(10.f, 600.f),
+                         randFloat(10.f, 400.f), randFloat(10.f, 400.f),
                          randInt(0, 1) == 1, randInt(0, 1) == 1);
     }
 }
 
 void TestCanvas::testLine(GiCanvas* canvas)
 {
-    for (int i = 0; i < 100; i++) {
-        canvas->drawLine(randFloat(-20.f, 800.f), randFloat(-20.f, 800.f),
-                         randFloat(-20.f, 500.f), randFloat(-20.f, 500.f));
+    for (int i = 0; i < 1000; i++) {
+        canvas->drawLine(randFloat(10.f, 600.f), randFloat(10.f, 600.f),
+                         randFloat(10.f, 400.f), randFloat(10.f, 400.f));
     }
 }
 
 void TestCanvas::testDot(GiCanvas* canvas)
 {
-    for (int i = 0; i < 100; i++) {
-        canvas->drawDot(randFloat(-20.f, 800.f), randFloat(-20.f, 800.f),
+    for (int i = 0; i < 500; i++) {
+        canvas->drawDot(randFloat(10.f, 600.f), randFloat(10.f, 600.f),
                         randFloat(0.5f, 100.f), 0);
     }
 }
 
 void TestCanvas::testEllipse(GiCanvas* canvas)
 {
-    for (int i = 0; i < 100; i++) {
-        canvas->drawEllipse(randFloat(-20.f, 800.f), randFloat(-20.f, 800.f),
-                            randFloat(-20.f, 500.f), randFloat(-20.f, 500.f),
+    for (int i = 0; i < 500; i++) {
+        canvas->drawEllipse(randFloat(10.f, 600.f), randFloat(10.f, 600.f),
+                            randFloat(10.f, 400.f), randFloat(10.f, 400.f),
                             randInt(0, 1) == 1, randInt(0, 1) == 1);
     }
 }
 
 void TestCanvas::testQuadBezier(GiCanvas* canvas)
 {
-    for (int i = 0; i < 20; i++) {
+    for (int i = 0; i < 500; i++) {
         canvas->beginPath();
         
-        float x1 = randFloat(-20.f, 800.f);
-        float y1 = randFloat(-20.f, 800.f);
+        float x1 = randFloat(10.f, 600.f);
+        float y1 = randFloat(10.f, 600.f);
         float x2 = x1 + randFloat(-100.f, 100.f);
         float y2 = y1 + randFloat(-100.f, 100.f);
         float x3 = x2 + randFloat(-100.f, 100.f);
@@ -94,11 +90,11 @@ void TestCanvas::testQuadBezier(GiCanvas* canvas)
 
 void TestCanvas::testCubicBezier(GiCanvas* canvas)
 {
-    for (int i = 0; i < 20; i++) {
+    for (int i = 0; i < 500; i++) {
         canvas->beginPath();
         
-        float x1 = randFloat(-20.f, 800.f);
-        float y1 = randFloat(-20.f, 800.f);
+        float x1 = randFloat(10.f, 600.f);
+        float y1 = randFloat(10.f, 600.f);
         float x2 = x1 + randFloat(-50.f, 50.f);
         float y2 = y1 + randFloat(-50.f, 50.f);
         float x3 = x2 + randFloat(-50.f, 50.f);
@@ -127,11 +123,11 @@ void TestCanvas::testCubicBezier(GiCanvas* canvas)
 
 void TestCanvas::testPolygon(GiCanvas* canvas)
 {
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < 500; i++) {
         canvas->beginPath();
         
-        float x = randFloat(-20.f, 800.f);
-        float y = randFloat(-20.f, 800.f);
+        float x = randFloat(10.f, 600.f);
+        float y = randFloat(10.f, 600.f);
         canvas->moveTo(x, y);
         
         for (int j = randInt(1, 5); j > 0; j--) {
@@ -147,9 +143,9 @@ void TestCanvas::testPolygon(GiCanvas* canvas)
 
 void TestCanvas::testClipPath(GiCanvas* canvas)
 {
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 10; i++) {
         canvas->saveClip();
-        canvas->clipRect(randFloat(10.f, 500.f), randFloat(10.f, 500.f),
+        canvas->clipRect(randFloat(10.f, 400.f), randFloat(10.f, 400.f),
                          randFloat(50.f, 200.f), randFloat(50.f, 200.f));
         testLine(canvas);
         testCubicBezier(canvas);
@@ -161,8 +157,8 @@ void TestCanvas::testClipPath(GiCanvas* canvas)
         canvas->saveClip();
         canvas->beginPath();
         
-        float x = randFloat(200.f, 800.f);
-        float y = randFloat(200.f, 800.f);
+        float x = randFloat(200.f, 600.f);
+        float y = randFloat(200.f, 600.f);
         canvas->moveTo(x, y);
         
         for (int j = randInt(1, 5); j > 0; j--) {

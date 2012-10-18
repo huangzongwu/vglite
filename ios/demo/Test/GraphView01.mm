@@ -10,6 +10,66 @@
 
 @implementation GraphViewBase
 
+- (void)didMoveToSuperview
+{
+    TestCanvas::initRand();
+    [super didMoveToSuperview];
+}
+
+- (void)drawRect:(CGRect)rect
+{
+    GiQuartzCanvas canvas;
+    NSDate *startTime = [NSDate date];
+    
+    if (canvas.beginPaint(UIGraphicsGetCurrentContext())) {
+        [self drawInCanvas:&canvas];
+        canvas.endPaint();
+    }
+    
+    NSTimeInterval seconds = [[NSDate date] timeIntervalSinceDate:startTime];
+    
+    UIViewController *detailc = (UIViewController *)self.superview.nextResponder;
+    NSString *title = detailc.title;
+    NSRange range = [title rangeOfString:@"-"];
+    if (range.length > 0) {
+        title = [title substringToIndex:range.location];
+    }
+    detailc.title = [title stringByAppendingFormat:@"-%dms", (int)(seconds * 1000)];
+    NSLog(@"drawRect: %@", detailc.title);
+}
+
+- (void)drawInCanvas:(GiCanvas*)canvas {}
+
+- (void)saveAsPdf
+{
+    NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, 
+                                                          NSUserDomainMask, YES) objectAtIndex:0];
+    static int order = 0;
+    NSString *filename = [NSString stringWithFormat:@"%@/page%d.pdf", path, ++order % 10];
+    
+    if (UIGraphicsBeginPDFContextToFile(filename, CGRectZero, nil)) {
+        CGRect mediabox = self.bounds;
+        UIGraphicsBeginPDFPageWithInfo(self.bounds, nil);
+        
+        CGContextRef ctx = UIGraphicsGetCurrentContext();
+        CGContextSetTextMatrix(ctx, CGAffineTransformMake(1, 0, 0, -1, 0, mediabox.size.height));
+        
+        GiQuartzCanvas canvas;
+        
+        if (canvas.beginPaint(ctx)) {
+            TestCanvas::initRand();
+            [self drawInCanvas:&canvas];
+            canvas.endPaint();
+        }
+        UIGraphicsEndPDFContext();
+    }
+}
+
+@end
+
+@implementation GraphView01
+@synthesize tests;
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -17,28 +77,9 @@
         self.contentMode = UIViewContentModeRedraw; // 不缓存图像，每次重画
         self.opaque = NO;
         self.clearsContextBeforeDrawing = YES;
-        
-        TestCanvas::initRand();
     }
     return self;
 }
-
-- (void)drawRect:(CGRect)rect
-{
-    GiQuartzCanvas canvas;
-    
-    if (canvas.beginPaint(UIGraphicsGetCurrentContext())) {
-        [self drawInCanvas:&canvas];
-        canvas.endPaint();
-    }
-}
-
-- (void)drawInCanvas:(GiCanvas*)canvas {}
-
-@end
-
-@implementation GraphView01
-@synthesize tests;
 
 - (void)drawInCanvas:(GiCanvas*)canvas
 {

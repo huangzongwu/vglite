@@ -16,7 +16,7 @@
 		AEF2D52F160964BA00DDB7F2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEF2D52E160964BA00DDB7F2 /* CoreGraphics.framework */; };
 		AEF2D53B160964BA00DDB7F2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AEF2D53A160964BA00DDB7F2 /* AppDelegate.m */; };
 		AEF2D53E160964BA00DDB7F2 /* MasterViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = AEF2D53D160964BA00DDB7F2 /* MasterViewController.mm */; };
-		AEF2D541160964BA00DDB7F2 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AEF2D540160964BA00DDB7F2 /* DetailViewController.m */; };
+		AEF2D541160964BA00DDB7F2 /* DetailViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = AEF2D540160964BA00DDB7F2 /* DetailViewController.mm */; };
 		AEF2D56F1609B67200DDB7F2 /* app57.png in Resources */ = {isa = PBXBuildFile; fileRef = AEF2D56D1609B67200DDB7F2 /* app57.png */; };
 		AEF2D5701609B67200DDB7F2 /* app72.png in Resources */ = {isa = PBXBuildFile; fileRef = AEF2D56E1609B67200DDB7F2 /* app72.png */; };
 		AEF2D5B01609BF7D00DDB7F2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AEF2D5AD1609BF7D00DDB7F2 /* main.m */; };
@@ -40,7 +40,7 @@
 		AEF2D53C160964BA00DDB7F2 /* MasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MasterViewController.h; sourceTree = "<group>"; };
 		AEF2D53D160964BA00DDB7F2 /* MasterViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MasterViewController.mm; sourceTree = "<group>"; };
 		AEF2D53F160964BA00DDB7F2 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
-		AEF2D540160964BA00DDB7F2 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		AEF2D540160964BA00DDB7F2 /* DetailViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = DetailViewController.mm; sourceTree = "<group>"; };
 		AEF2D56D1609B67200DDB7F2 /* app57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app57.png; sourceTree = "<group>"; };
 		AEF2D56E1609B67200DDB7F2 /* app72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = app72.png; sourceTree = "<group>"; };
 		AEF2D5AD1609BF7D00DDB7F2 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -122,7 +122,7 @@
 				AEF2D53C160964BA00DDB7F2 /* MasterViewController.h */,
 				AEF2D53D160964BA00DDB7F2 /* MasterViewController.mm */,
 				AEF2D53F160964BA00DDB7F2 /* DetailViewController.h */,
-				AEF2D540160964BA00DDB7F2 /* DetailViewController.m */,
+				AEF2D540160964BA00DDB7F2 /* DetailViewController.mm */,
 				AEF2D531160964BA00DDB7F2 /* Supporting Files */,
 			);
 			path = Classes;
@@ -212,7 +212,7 @@
 			files = (
 				AEF2D53B160964BA00DDB7F2 /* AppDelegate.m in Sources */,
 				AEF2D53E160964BA00DDB7F2 /* MasterViewController.mm in Sources */,
-				AEF2D541160964BA00DDB7F2 /* DetailViewController.m in Sources */,
+				AEF2D541160964BA00DDB7F2 /* DetailViewController.mm in Sources */,
 				AEF2D5B01609BF7D00DDB7F2 /* main.m in Sources */,
 				AE4E6F0016129265006CAA5C /* GiQuartzCanvas.cpp in Sources */,
 				AE4E6F0516129337006CAA5C /* GraphView01.mm in Sources */,

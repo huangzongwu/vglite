@@ -4,6 +4,7 @@
  * @version 1.0, 2012-9-19
  */
 #import "DetailViewController.h"
+#import "GraphView01.h"
 
 @interface DetailViewController ()
 @property (nonatomic, assign) UIPopoverController *masterPopoverController;
@@ -66,6 +67,19 @@
 {
     [self.navigationItem setLeftBarButtonItem:nil animated:YES];
     self.masterPopoverController = nil;
+}
+
+- (void)editDetailPage:(id)sender
+{
+    
+}
+
+- (void)saveDetailPage:(id)sender
+{
+    if ([_content.view isKindOfClass:[GraphViewBase class]]) {
+        GraphViewBase *gview = (GraphViewBase *)_content.view;
+        [gview saveAsPdf];
+    }
 }
 
 #pragma mark - Split view
