@@ -7,6 +7,7 @@ rm -rf ._java/touchvg/jni/*.*
 swig -c++ -java -package touchvg.jni \
     -outdir ._java/touchvg/jni -o touchvg_java_wrap.cpp \
     -I../../../core/canvas -I../../../core/test -I"$JAVA_INCLUDE" touchvg.swig
+python replacejstr.py
 
 cd ._java/touchvg/jni; javac *.java; cd ../../..
 cd ._java; jar cfv touchvg.jar touchvg/jni/*.class; cd ..

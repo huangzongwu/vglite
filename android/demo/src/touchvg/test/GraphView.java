@@ -47,4 +47,13 @@ public class GraphView extends TestView {
 	
 	protected void onDraw(GiCanvasEx canvas) {
 	}
+	
+	@Override
+	protected void onDetachedFromWindow() {
+		if (mCanvas != null) {
+			mCanvas.delete();
+			mCanvas = null;
+		}
+		super.onDetachedFromWindow();
+	}
 }

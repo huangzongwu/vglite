@@ -6,6 +6,7 @@ include $(CLEAR_VARS)
 
 LOCAL_MODULE := touchvg
 LOCAL_SHARED_LIBRARIES := libcutils libdl libstlport
+LOCAL_LDLIBS           :=  -L$(SYSROOT)/usr/lib -llog
 LOCAL_PRELINK_MODULE   := false
 LOCAL_CFLAGS           := -frtti -g  -Wall -Wextra -D__ANDROID__
 
@@ -19,7 +20,8 @@ include external/stlport/libstlport.mk
 endif
 
 LOCAL_C_INCLUDES := $(COREINC)/canvas \
-                    $(COREINC)/test
+                    $(COREINC)/test \
+                    $(JNI_H_INCLUDE)
 
 LOCAL_SRC_FILES  := touchvg_java_wrap.cpp \
                     $(CORESRC)/test/testcanvas.cpp
