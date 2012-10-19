@@ -30,6 +30,10 @@ public class TestView extends View {
 		super(newContext);
 	}
 	
+	protected TestView(Context context) {
+		super(context);
+	}
+	
 	protected boolean hasFlag(int mask) {
 		return (mCreateFlags & mask) != 0;
 	}

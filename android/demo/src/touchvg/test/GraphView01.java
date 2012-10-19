@@ -6,10 +6,18 @@
  */
 package touchvg.test;
 
+import android.content.Context;
 import touchvg.canvas.GiCanvasEx;
 import touchvg.jni.TestCanvas;
 
 public class GraphView01 extends GraphView {
+	
+	public GraphView01() {
+	}
+	
+	protected GraphView01(Context context) {
+		super(context);
+	}
 	
 	@Override
 	protected void onDraw(GiCanvasEx canvas) {

@@ -143,14 +143,11 @@ void TestCanvas::testPolygon(GiCanvas* canvas)
 
 void TestCanvas::testClipPath(GiCanvas* canvas)
 {
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 5; i++) {
         canvas->saveClip();
         canvas->clipRect(randFloat(10.f, 400.f), randFloat(10.f, 400.f),
                          randFloat(50.f, 200.f), randFloat(50.f, 200.f));
-        testLine(canvas);
         testCubicBezier(canvas);
-        testEllipse(canvas);
-        testPolygon(canvas);
         canvas->restoreClip();
     }
     for (int j = 0; j < 5; j++) {
@@ -171,8 +168,6 @@ void TestCanvas::testClipPath(GiCanvas* canvas)
         canvas->brushChanged(0x11000000 | randInt(0, 0xFFFFFF), 0);
         canvas->drawPath(true, true);
         
-        testCubicBezier(canvas);
-        testEllipse(canvas);
         canvas->restoreClip();
     }
 }

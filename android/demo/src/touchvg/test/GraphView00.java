@@ -6,6 +6,7 @@
  */
 package touchvg.test;
 
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
@@ -13,6 +14,10 @@ public class GraphView00 extends TestView {
 	private Paint mPen = new Paint();
 	
 	public GraphView00() {
+	}
+	
+	protected GraphView00(Context context) {
+		super(context);
 	}
 	
 	@Override

@@ -20,6 +20,7 @@ public class GiCanvasEx extends GiCanvas {
     private Paint mPen = new Paint();
     private Paint mBrush = new Paint();
     private Canvas mCanvas = null;
+    private int mBkColor = 0;
     private PathEffect mEffects = null;
     private static final float patDash[]      = { 5, 5 };
     private static final float patDot[]       = { 1, 2 };
@@ -38,6 +39,10 @@ public class GiCanvasEx extends GiCanvas {
 		if (getCPtr(this) != 0)
 			super.delete();
 	}
+	
+	public void setBackgroundColor(int color) {
+    	mBkColor = color;
+    }
     
     public Canvas getCanvas() {
         return mCanvas;
@@ -57,7 +62,7 @@ public class GiCanvasEx extends GiCanvas {
         mPen.setStrokeCap(Paint.Cap.ROUND);				// 圆端
         mPen.setStrokeJoin(Paint.Join.ROUND);			// 折线转角圆弧过渡
         mBrush.setStyle(Paint.Style.FILL);				// 仅填充
-        mBrush.setColor(0);								// 默认不填充
+        mBrush.setColor(0);								// 默认透明，不填充
         
         return true;
     }
@@ -68,11 +73,12 @@ public class GiCanvasEx extends GiCanvas {
     
     private void makeLinePattern(float arr[], float width)
     {
+    	float phase = 0;
         float f[] = new float[arr.length];
         for (int i = 0; i < arr.length; i++) {
             f[i] = arr[i] * (width < 1 ? 1 : width);
         }
-        this.mEffects = new DashPathEffect(f, 1);
+        this.mEffects = new DashPathEffect(f, phase);
     }
     
     @Override
@@ -122,10 +128,15 @@ public class GiCanvasEx extends GiCanvas {
 
     @Override
     public void clearRect(float x, float y, float w, float h) {
-    	Paint paint = new Paint();
-    	paint.setColor(0);
-    	paint.setStyle(Paint.Style.FILL);
-    	mCanvas.drawRect(x, y, x + w, y + h, paint);
+    	if ((int)(w + 0.5f) == mCanvas.getWidth() && (int)(h + 0.5f) == mCanvas.getHeight()) {
+    		mCanvas.drawColor(mBkColor);
+    	}
+    	else {
+    		Paint paint = new Paint();
+    		paint.setColor(mBkColor);
+    		paint.setStyle(Paint.Style.FILL);
+    		mCanvas.drawRect(x, y, x + w, y + h, paint);
+    	}
     }
 
     @Override
