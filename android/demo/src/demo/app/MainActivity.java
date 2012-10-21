@@ -1,10 +1,10 @@
-/**
+﻿/**
  * @file MainActivity.java
  * @copyright GNU LGPL v3, https://github.com/rhcad/touchvg
  * @author Zhang Yungui
  * @version 1.0, 2012-9-29
  */
-package touchvg.demo;
+package demo.app;
 
 import android.os.Bundle;
 import android.view.View;

@@ -1,12 +1,12 @@
-/**
+﻿/**
  * @file DummyActivity.java
  * @copyright GNU LGPL v3, https://github.com/rhcad/touchvg
  * @author Zhang Yungui
  * @version 1.0, 2012-9-29
  */
-package touchvg.demo;
+package demo.app;
 
-import touchvg.test.TestView;
+import demo.view.TestView;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;

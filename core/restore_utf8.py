@@ -21,4 +21,5 @@ def restore_utf8(dir):
 
 if __name__=="__main__":
     resultfn = restore_utf8(os.path.abspath('core'))
+    resultfn += restore_utf8(os.path.abspath('android/demo/src/touchvg'))
     if resultfn != '': print('restore files: ' + resultfn)

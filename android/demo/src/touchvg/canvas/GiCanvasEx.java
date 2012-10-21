@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @file GiCanvasEx.java
  * @copyright GNU LGPL v3, https://github.com/rhcad/touchvg
  * @author Zhang Yungui

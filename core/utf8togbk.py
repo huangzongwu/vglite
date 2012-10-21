@@ -15,7 +15,7 @@ def utf8togbk(dir):
         if os.path.isdir(sfile):
             resultfn += utf8togbk(sfile)
             continue
-        if fn.endswith('.h') or fn.endswith('.cpp'):
+        if fn.endswith('.h') or fn.endswith('.cpp') or fn.endswith('.java'):
             if os.path.exists(sfile + '.utf8'):
                 continue
             try:
@@ -38,4 +38,5 @@ def utf8togbk(dir):
 
 if __name__=="__main__":
     resultfn = utf8togbk(os.path.abspath('core'))
+    resultfn += utf8togbk(os.path.abspath('android/demo/src/touchvg'))
     if resultfn != '': print('utf8->gbk: ' + resultfn)

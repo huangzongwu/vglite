@@ -1,10 +1,10 @@
-/**
+﻿/**
  * @file DummyContent.java
  * @copyright GNU LGPL v3, https://github.com/rhcad/touchvg
  * @author Zhang Yungui
  * @version 1.0, 2012-9-25
  */
-package touchvg.demo;
+package demo.app;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,16 +32,16 @@ public class DummyContent {
     public static List<DummyItem> ITEMS = new ArrayList<DummyItem>();
 
     static {
-    	addItem("touchvg.test.GraphView00", 0,    "Simple view");
-    	addItem("touchvg.test.GraphView01", 0x01, "testRect");
-    	addItem("touchvg.test.GraphView01", 0x02, "testLine");
-    	addItem("touchvg.test.GraphView01", 0x04, "testDot");
-    	addItem("touchvg.test.GraphView01", 0x08, "testEllipse");
-    	addItem("touchvg.test.GraphView01", 0x10, "testQuadBezier");
-    	addItem("touchvg.test.GraphView01", 0x20, "testCubicBezier");
-    	addItem("touchvg.test.GraphView01", 0x40, "testPolygon");
-        addItem("touchvg.test.GraphView01", 0x80|0x40|0x02, "testClearRect");
-        addItem("touchvg.test.GraphView01", 0x100, "testClipPath");
+    	addItem("demo.view.GraphView00", 0,    "Simple view");
+    	addItem("demo.view.GraphView01", 0x01, "testRect");
+    	addItem("demo.view.GraphView01", 0x02, "testLine");
+    	addItem("demo.view.GraphView01", 0x04, "testDot");
+    	addItem("demo.view.GraphView01", 0x08, "testEllipse");
+    	addItem("demo.view.GraphView01", 0x10, "testQuadBezier");
+    	addItem("demo.view.GraphView01", 0x20, "testCubicBezier");
+    	addItem("demo.view.GraphView01", 0x40, "testPolygon");
+        addItem("demo.view.GraphView01", 0x80|0x40|0x02, "testClearRect");
+        addItem("demo.view.GraphView01", 0x100, "testClipPath");
     }
     
     private static void addItem(String id, int flags, String title) {
