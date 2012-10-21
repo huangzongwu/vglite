@@ -16,7 +16,6 @@ public class GraphView extends TestView {
 	protected GiCanvasEx mCanvas = new GiCanvasEx();
 	
 	public GraphView() {
-		TestCanvas.initRand();
 	}
 	
 	protected GraphView(Context context) {
@@ -30,7 +29,9 @@ public class GraphView extends TestView {
 	
 	@Override
 	protected void onDraw(Canvas canvas) {
+		TestCanvas.initRand();
 		long ms = System.currentTimeMillis();
+		
 		if (mCanvas.beginPaint(canvas)) {
 			onDraw(mCanvas);
 			mCanvas.endPaint();
@@ -39,7 +40,7 @@ public class GraphView extends TestView {
 		
 		Activity activity = (Activity)this.getContext();
 		String title = activity.getTitle().toString();
-		int pos = title.lastIndexOf(' ');
+		int pos = title.indexOf(' ');
 		if (pos >= 0)
 			title = title.substring(0, pos);
 		activity.setTitle(title + " - " + Long.toString(ms) + " ms");

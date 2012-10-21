@@ -20,8 +20,6 @@
 
 #ifdef SWIGJAVA
 %{
-#include <jni.h>
-
 JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM* /*ajvm*/, void* /*reserved*/) {
     return JNI_VERSION_1_6;
 }
