@@ -11,6 +11,7 @@
 		AE4E6F0516129337006CAA5C /* GraphView01.mm in Sources */ = {isa = PBXBuildFile; fileRef = AE4E6F0316129337006CAA5C /* GraphView01.mm */; };
 		AE4E6F0616129337006CAA5C /* ViewFactory.mm in Sources */ = {isa = PBXBuildFile; fileRef = AE4E6F0416129337006CAA5C /* ViewFactory.mm */; };
 		AE4E6F0A161293EE006CAA5C /* testcanvas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AE4E6F08161293EE006CAA5C /* testcanvas.cpp */; };
+		AEA2645B16350CFC00827F39 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEA2645A16350CFC00827F39 /* QuartzCore.framework */; };
 		AEF2D52B160964BA00DDB7F2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEF2D52A160964BA00DDB7F2 /* UIKit.framework */; };
 		AEF2D52D160964BA00DDB7F2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEF2D52C160964BA00DDB7F2 /* Foundation.framework */; };
 		AEF2D52F160964BA00DDB7F2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEF2D52E160964BA00DDB7F2 /* CoreGraphics.framework */; };
@@ -31,6 +32,7 @@
 		AE4E6F0416129337006CAA5C /* ViewFactory.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ViewFactory.mm; path = ../demo/Test/ViewFactory.mm; sourceTree = "<group>"; };
 		AE4E6F08161293EE006CAA5C /* testcanvas.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = testcanvas.cpp; path = ../../core/test/testcanvas.cpp; sourceTree = "<group>"; };
 		AE4E6F09161293EE006CAA5C /* testcanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = testcanvas.h; path = ../../core/test/testcanvas.h; sourceTree = "<group>"; };
+		AEA2645A16350CFC00827F39 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		AEF2D526160964BA00DDB7F2 /* VGDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VGDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AEF2D52A160964BA00DDB7F2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AEF2D52C160964BA00DDB7F2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -53,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEA2645B16350CFC00827F39 /* QuartzCore.framework in Frameworks */,
 				AEF2D52B160964BA00DDB7F2 /* UIKit.framework in Frameworks */,
 				AEF2D52D160964BA00DDB7F2 /* Foundation.framework in Frameworks */,
 				AEF2D52F160964BA00DDB7F2 /* CoreGraphics.framework in Frameworks */,
@@ -110,6 +113,7 @@
 				AEF2D52A160964BA00DDB7F2 /* UIKit.framework */,
 				AEF2D52C160964BA00DDB7F2 /* Foundation.framework */,
 				AEF2D52E160964BA00DDB7F2 /* CoreGraphics.framework */,
+				AEA2645A16350CFC00827F39 /* QuartzCore.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

@@ -21,3 +21,7 @@ struct GiCanvas;
 @property (nonatomic, assign) int tests;
 
 @end
+
+@interface CALayerTest : UIView
+
+@end
