@@ -23,5 +23,7 @@ struct GiCanvas;
 @end
 
 @interface CALayerTest : UIView
+@end
 
+@interface DrawTextTest : UIView
 @end

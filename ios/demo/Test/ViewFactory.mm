@@ -58,4 +58,5 @@ void getViewControllers(NSMutableArray *arr)
     addView(arr, @"testClipPath", view1);
     
     addView(arr, @"CALayerTest", [[CALayerTest alloc]initWithFrame:CGRectNull]);
+    addView(arr, @"DrawTextTest", [[DrawTextTest alloc]initWithFrame:CGRectNull]);
 }

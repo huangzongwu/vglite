@@ -104,8 +104,9 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.contentMode = UIViewContentModeRedraw; // 不缓存图像，每次重画
-        self.opaque = NO;
-        self.clearsContextBeforeDrawing = YES;
+        self.backgroundColor = [UIColor clearColor];
+        //self.opaque = NO;
+        //self.clearsContextBeforeDrawing = YES;
     }
     return self;
 }
@@ -233,6 +234,66 @@ void MyDrawColoredPattern (void*info, CGContextRef context) {
     CGPatternRelease(pattern);
     CGContextFillRect(context, layer.bounds);
     CGContextRestoreGState(context);
+}
+
+@end
+
+#include <CoreText/CoreText.h>
+
+@implementation DrawTextTest
+
+- (void)drawRect:(CGRect)rect
+{
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    
+    // http://blog.chinaunix.net/uid-25458681-id-3381925.html
+    //
+    
+    rect = CGContextGetClipBoundingBox(ctx);
+    CGContextSetFillColorWithColor(ctx, [[UIColor whiteColor] CGColor]);
+    CGContextFillRect(ctx, rect);
+    
+    CGContextSetStrokeColorWithColor(ctx, [UIColor redColor].CGColor);
+    CGContextStrokeRect(ctx, CGRectMake(100, 100, 400, 200));
+    
+    CGContextSetAllowsAntialiasing(ctx, YES);
+    CGContextSetFillColorWithColor(ctx, [[UIColor colorWithRed:0 green:0 blue:1 alpha:0.5] CGColor]);
+    
+    NSString *str = @"fucking汉1";
+    [str drawAtPoint:CGPointMake(100, 100) withFont:[UIFont systemFontOfSize:64.0]];
+    //CGAffineTransform f = CGContextGetTextMatrix(ctx);
+    
+    UIFont *_font = [UIFont systemFontOfSize:64.0];
+    CGContextSelectFont(ctx, [_font.fontName UTF8String], _font.pointSize, kCGEncodingMacRoman);
+    
+    CGContextSetTextMatrix(ctx, CGAffineTransformScale(CGAffineTransformIdentity, 1, -1));
+    CGContextSetTextDrawingMode(ctx, kCGTextStroke);
+    CGContextShowTextAtPoint(ctx, 100.0, 100.0, [str UTF8String], str.length);
+    
+    // http://www.cnblogs.com/itentic/archive/2012/06/17/2552311.html
+    // 如果编码超出MacRoman的范围，要使用CGContextShowGlyphsAtPoint来绘制，在CoreText框架获取字符图元
+    
+    UniChar *characters;
+    CGGlyph *glyphs;
+    CFIndex count;
+    
+    CTFontRef ctFont = CTFontCreateWithName(CFSTR("STHeitiSC-Light"), 64, NULL);
+    CTFontDescriptorRef ctFontDesRef = CTFontCopyFontDescriptor(ctFont);
+    CGFontRef cgFont = CTFontCopyGraphicsFont(ctFont, &ctFontDesRef); 
+    CGContextSetFont(ctx, cgFont);
+    CFNumberRef pointSizeRef = (CFNumberRef)CTFontDescriptorCopyAttribute(ctFontDesRef,kCTFontSizeAttribute);
+    CGFloat fontSize;
+    CFNumberGetValue(pointSizeRef, kCFNumberCGFloatType,&fontSize);
+    CGContextSetFontSize(ctx, fontSize);
+    count = CFStringGetLength((CFStringRef)str);
+    characters = (UniChar *)malloc(sizeof(UniChar) * count);
+    glyphs = (CGGlyph *)malloc(sizeof(CGGlyph) * count);
+    CFStringGetCharacters((CFStringRef)str, CFRangeMake(0, count), characters);
+    CTFontGetGlyphsForCharacters(ctFont, characters, glyphs, count);
+    CGContextShowGlyphsAtPoint(ctx, 100, 300, glyphs, str.length);
+    
+    free(characters);
+    free(glyphs);
 }
 
 @end
