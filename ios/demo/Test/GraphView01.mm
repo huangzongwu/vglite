@@ -7,6 +7,7 @@
 #import "GraphView01.h"
 #include "GiQuartzCanvas.h"
 #include <testcanvas.h>
+#include <mach/mach_time.h>
 
 @implementation GraphViewBase
 
@@ -19,22 +20,23 @@
 - (void)drawRect:(CGRect)rect
 {
     GiQuartzCanvas canvas;
-    NSDate *startTime = [NSDate date];
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    uint64_t start = mach_absolute_time();
     
-    if (canvas.beginPaint(UIGraphicsGetCurrentContext())) {
+    if (canvas.beginPaint(context)) {
         [self drawInCanvas:&canvas];
         canvas.endPaint();
     }
     
-    NSTimeInterval seconds = [[NSDate date] timeIntervalSinceDate:startTime];
+    int drawTime = (int)(mach_absolute_time() - start);
     
     UIViewController *detailc = (UIViewController *)self.superview.nextResponder;
     NSString *title = detailc.title;
-    NSRange range = [title rangeOfString:@"-"];
+    NSRange range = [title rangeOfString:@" us - "];
     if (range.length > 0) {
-        title = [title substringToIndex:range.location];
+        title = [title substringFromIndex:range.location + 6];
     }
-    detailc.title = [title stringByAppendingFormat:@"-%dms", (int)(seconds * 1000)];
+    detailc.title = [[NSString stringWithFormat:@"%ld us - ", drawTime/1000] stringByAppendingString:title];
     NSLog(@"drawRect: %@", detailc.title);
 }
 
@@ -278,13 +280,15 @@ void MyDrawColoredPattern (void*info, CGContextRef context) {
     CFIndex count;
     
     CTFontRef ctFont = CTFontCreateWithName(CFSTR("STHeitiSC-Light"), 64, NULL);
-    CTFontDescriptorRef ctFontDesRef = CTFontCopyFontDescriptor(ctFont);
-    CGFontRef cgFont = CTFontCopyGraphicsFont(ctFont, &ctFontDesRef); 
+    CTFontDescriptorRef ctFontDesc = CTFontCopyFontDescriptor(ctFont);
+    CGFontRef cgFont = CTFontCopyGraphicsFont(ctFont, &ctFontDesc); 
     CGContextSetFont(ctx, cgFont);
-    CFNumberRef pointSizeRef = (CFNumberRef)CTFontDescriptorCopyAttribute(ctFontDesRef,kCTFontSizeAttribute);
+    
+    CFNumberRef pointSizeRef = (CFNumberRef)CTFontDescriptorCopyAttribute(ctFontDesc, kCTFontSizeAttribute);
     CGFloat fontSize;
-    CFNumberGetValue(pointSizeRef, kCFNumberCGFloatType,&fontSize);
+    CFNumberGetValue(pointSizeRef, kCFNumberCGFloatType, &fontSize);
     CGContextSetFontSize(ctx, fontSize);
+    
     count = CFStringGetLength((CFStringRef)str);
     characters = (UniChar *)malloc(sizeof(UniChar) * count);
     glyphs = (CGGlyph *)malloc(sizeof(CGGlyph) * count);
@@ -294,6 +298,9 @@ void MyDrawColoredPattern (void*info, CGContextRef context) {
     
     free(characters);
     free(glyphs);
+    
+    CFRelease(ctFontDesc);
+    CFRelease(ctFont);
 }
 
 @end
