@@ -13,7 +13,6 @@ struct TestCanvas {
 
     static void testRect(GiCanvas* canvas);
     static void testLine(GiCanvas* canvas);
-    static void testDot(GiCanvas* canvas);
     static void testEllipse(GiCanvas* canvas);
     static void testQuadBezier(GiCanvas* canvas);
     static void testCubicBezier(GiCanvas* canvas);

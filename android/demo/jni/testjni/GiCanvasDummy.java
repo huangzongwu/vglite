@@ -6,6 +6,7 @@
  */
 
 import touchvg.jni.GiCanvas;
+import touchvg.jni.GiBitmap;
 
 public class GiCanvasDummy extends GiCanvas {
 
@@ -44,18 +45,18 @@ public class GiCanvasDummy extends GiCanvas {
     }
 
     @Override
-    public void penChanged(int argb, float width, int style) {
-        System.err.println(this + ".penChanged(" + argb + ", " + width + ", " + style + ")");
+    public void setPen(int argb, float width, int style) {
+        System.err.println(this + ".setPen(" + argb + ", " + width + ", " + style + ")");
     }
 
     @Override
-    public void brushChanged(int argb, int style) {
-        System.err.println(this + ".brushChanged(" + argb + ", " + style + ")");
+    public void setBrush(int argb, int style) {
+        System.err.println(this + ".setBrush(" + argb + ", " + style + ")");
     }
 
     @Override
-    public void antiAliasChanged(boolean antiAlias) {
-        System.err.println(this + ".antiAliasChanged(" + antiAlias + ")");
+    public void setAntialias(boolean antiAlias) {
+        System.err.println(this + ".setAntialias(" + antiAlias + ")");
     }
 
     @Override
@@ -90,12 +91,6 @@ public class GiCanvasDummy extends GiCanvas {
     public void drawLine(float x1, float y1, float x2, float y2) {
         System.err.println(this + ".drawLine("
             + x1 + ", " + y1 + ", " + x2 + ", " + y2 + ")");
-    }
-
-    @Override
-    public void drawDot(float x, float y, float radius, int style) {
-        System.err.println(this + ".drawDot("
-            + x + ", " + y + ", " + radius + ", " + style + ")");
     }
 
     @Override
@@ -143,6 +138,17 @@ public class GiCanvasDummy extends GiCanvas {
 
     @Override
     public void clipPath() {
+        System.err.println(this + ".clipPath()");
+    }
+
+    @Override
+    public void drawHandle(float x, float y, int type) {
+        System.err.println(this + ".clipPath()");
+    }
+
+    @Override
+    public void drawBitmap(GiBitmap bitmap, float x, float y,
+                           float scale, float angle) {
         System.err.println(this + ".clipPath()");
     }
 

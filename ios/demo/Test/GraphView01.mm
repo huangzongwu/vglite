@@ -119,8 +119,6 @@
         TestCanvas::testRect(canvas);
     if (tests & 0x02)
         TestCanvas::testLine(canvas);
-    if (tests & 0x04)
-        TestCanvas::testDot(canvas);
     if (tests & 0x08)
         TestCanvas::testEllipse(canvas);
     if (tests & 0x10)

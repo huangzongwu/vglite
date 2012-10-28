@@ -42,7 +42,7 @@ static inline float colorPart(int argb, int bit)
     return (float)((argb >> bit) & 0xFF) / 255.f;
 }
 
-void GiQuartzCanvas::penChanged(int argb, float width, int style)
+void GiQuartzCanvas::setPen(int argb, float width, int style)
 {
     const CGFloat patDash[]      = { 5, 5, 0 };
     const CGFloat patDot[]       = { 1, 2, 0 };
@@ -70,7 +70,7 @@ void GiQuartzCanvas::penChanged(int argb, float width, int style)
     }
 }
 
-void GiQuartzCanvas::brushChanged(int argb, int style)
+void GiQuartzCanvas::setBrush(int argb, int style)
 {
     if (0 == style) {
         CGContextSetRGBFillColor(_ctx, colorPart(argb, 16), colorPart(argb, 8),
@@ -78,7 +78,7 @@ void GiQuartzCanvas::brushChanged(int argb, int style)
     }
 }
 
-void GiQuartzCanvas::antiAliasChanged(bool antiAlias)
+void GiQuartzCanvas::setAntialias(bool antiAlias)
 {
     CGContextSetAllowsAntialiasing(_ctx, antiAlias);
 }
@@ -119,15 +119,6 @@ void GiQuartzCanvas::drawLine(float x1, float y1, float x2, float y2)
     CGContextMoveToPoint(_ctx, x1, y1);
     CGContextAddLineToPoint(_ctx, x2, y2);
     CGContextStrokePath(_ctx);
-}
-
-void GiQuartzCanvas::drawDot(float x, float y, float radius, int style)
-{
-    if (0 == style) {
-        CGRect rect = CGRectMake(x - radius, y - radius, 2 * radius, 2 * radius);
-        CGContextFillEllipseInRect(_ctx, rect);
-        CGContextStrokeEllipseInRect(_ctx, rect);
-    }
 }
 
 void GiQuartzCanvas::drawEllipse(float x, float y, float w, float h, bool stroke, bool fill)
@@ -179,4 +170,12 @@ void GiQuartzCanvas::drawPath(bool stroke, bool fill)
 void GiQuartzCanvas::clipPath()
 {
     CGContextClip(_ctx);
+}
+
+void GiQuartzCanvas::drawHandle(float, float, int)
+{
+}
+
+void GiQuartzCanvas::drawBitmap(GiBitmap&, float, float, float, float)
+{
 }

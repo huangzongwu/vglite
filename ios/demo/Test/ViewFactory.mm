@@ -30,10 +30,6 @@ void getViewControllers(NSMutableArray *arr)
     addView(arr, @"testLine", view1);
     
     view1 = [[GraphView01 alloc]initWithFrame:CGRectNull];
-    view1.tests = 0x04;
-    addView(arr, @"testDot", view1);
-    
-    view1 = [[GraphView01 alloc]initWithFrame:CGRectNull];
     view1.tests = 0x08;
     addView(arr, @"testEllipse", view1);
     

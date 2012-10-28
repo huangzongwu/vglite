@@ -17,16 +17,12 @@ public:
     void endPaint();
     
 public:
-    void penChanged(int argb, float width, int style);
-    void brushChanged(int argb, int style);
-    void antiAliasChanged(bool antiAlias);
-    void saveClip();
-    void restoreClip();
+    void setPen(int argb, float width, int style);
+    void setBrush(int argb, int style);
+    void setAntialias(bool antiAlias);
     void clearRect(float x, float y, float w, float h);
     void drawRect(float x, float y, float w, float h, bool stroke, bool fill);
-    void clipRect(float x, float y, float w, float h);
     void drawLine(float x1, float y1, float x2, float y2);
-    void drawDot(float x, float y, float radius, int style);
     void drawEllipse(float x, float y, float w, float h, bool stroke, bool fill);
     void beginPath();
     void moveTo(float x, float y);
@@ -35,7 +31,12 @@ public:
     void quadTo(float cpx, float cpy, float x, float y);
     void closePath();
     void drawPath(bool stroke, bool fill);
+    void saveClip();
+    void restoreClip();
+    void clipRect(float x, float y, float w, float h);
     void clipPath();
+    void drawHandle(float x, float y, int type);
+    void drawBitmap(GiBitmap& bitmap, float x, float y, float scale, float angle);
     
 private:
     CGContextRef    _ctx;

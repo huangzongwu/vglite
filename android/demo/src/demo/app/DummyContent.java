@@ -35,7 +35,6 @@ public class DummyContent {
     	addItem("demo.view.GraphView00", 0,    "Simple view");
     	addItem("demo.view.GraphView01", 0x01, "testRect");
     	addItem("demo.view.GraphView01", 0x02, "testLine");
-    	addItem("demo.view.GraphView01", 0x04, "testDot");
     	addItem("demo.view.GraphView01", 0x08, "testEllipse");
     	addItem("demo.view.GraphView01", 0x10, "testQuadBezier");
     	addItem("demo.view.GraphView01", 0x20, "testCubicBezier");

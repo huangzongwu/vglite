@@ -25,8 +25,6 @@ public class GraphView01 extends GraphView {
 	        TestCanvas.testRect(canvas);
 	    if (hasFlag(0x02))
 	        TestCanvas.testLine(canvas);
-	    if (hasFlag(0x04))
-	        TestCanvas.testDot(canvas);
 	    if (hasFlag(0x08))
 	        TestCanvas.testEllipse(canvas);
 	    if (hasFlag(0x10))

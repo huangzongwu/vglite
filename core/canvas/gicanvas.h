@@ -7,7 +7,16 @@
 #ifndef TOUCHVG_GICANVAS_H
 #define TOUCHVG_GICANVAS_H
 
-/** 设备画布接口.
+/** 设备相关的图像接口.
+ * @ingroup GROUP_CANVAS
+ */
+class GiBitmap
+{
+public:
+    virtual ~GiBitmap() {}
+};
+
+/** 设备相关的画布接口.
  * 在派生类中使用某一种图形库实现其绘图函数，坐标单位为点或像素.
  * 默认绘图属性为：黑色画笔、线宽=1、实线、反走样、不填充.
  * @ingroup GROUP_CANVAS
@@ -22,16 +31,16 @@ public:
      * @param width 线宽，单位为点，正数，如果为负数则忽略该参数.
      * @param style 线型，0-实线，1-虚线，2-点线，3-点划线，4-双点划线，5-空线，其余值为自定义线型，如果为负数则忽略该参数.
      */
-    virtual void penChanged(int argb, float width, int style) = 0;
+    virtual void setPen(int argb, float width, int style) = 0;
     
     /** 设置画刷填充属性.
      * @param argb 填充色，包含alpha分量，按字节从高到低顺序依次是A、R、G、B分量值，例如 alpha = (argb>>24) & 0xFF.
      * @param style 填充类型，0-实填充，其余正数值为自定义填充.
      */
-    virtual void brushChanged(int argb, int style) = 0;
+    virtual void setBrush(int argb, int style) = 0;
     
     /** 设置是否反走样绘制 */
-    virtual void antiAliasChanged(bool antiAlias) = 0;
+    virtual void setAntialias(bool antiAlias) = 0;
 
     
     /** 清除指定矩形区域的显示内容，透明显示，仅用于在视图和图像上的绘制 */
@@ -42,14 +51,6 @@ public:
     
     /** 给定起始坐标，显示一段直线 */
     virtual void drawLine(float x1, float y1, float x2, float y2) = 0;
-    
-    /** 在指定中心位置显示一个小圈.
-     * @param x 中心位置X
-     * @param y 中心位置Y
-     * @param radius 半径，style为0时有效
-     * @param style 小圈类型，0表示使用当前画笔和画刷显示一个圆，正数表示特定符号.
-     */
-    virtual void drawDot(float x, float y, float radius, int style) = 0;
     
     /** 在给定矩形框内显示一个椭圆，可描边和填充 */
     virtual void drawEllipse(float x, float y, float w, float h, bool stroke, bool fill) = 0;
@@ -94,6 +95,12 @@ public:
 	 * @see saveClip, restoreClip, beginPath
 	 */
     virtual void clipPath() = 0;
+    
+    /** 给定中心位置显示特殊符号. */
+    virtual void drawHandle(float x, float y, int type) = 0;
+    
+    /** 在指定中心位置显示图像. */
+    virtual void drawBitmap(GiBitmap& bitmap, float x, float y, float scale, float angle) = 0;
 };
 
 #endif // TOUCHVG_GICANVAS_H
