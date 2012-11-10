@@ -79,10 +79,10 @@ public:
     
     
     /** 保存剪裁区域. 在调用 clipRect() 或 clipPath() 前调用本函数，使用 restoreClip() 恢复剪裁区域. */
-	virtual void saveClip() = 0;
+    virtual void saveClip() = 0;
 	
-	/** 恢复剪裁区域. 与 saveClip() 配套使用 */
-	virtual void restoreClip() = 0;
+    /** 恢复剪裁区域. 与 saveClip() 配套使用 */
+    virtual void restoreClip() = 0;
 	
     /** 设置剪裁区域为当前剪裁区域与给定矩形的交集.
 	 * 给定矩形的宽高不一定为正数，所设置的剪裁区域影响后续绘图，可能会清除当前路径.
@@ -96,11 +96,26 @@ public:
 	 */
     virtual void clipPath() = 0;
     
-    /** 给定中心位置显示特殊符号. */
+    /** 在给定中心位置显示特殊符号. */
     virtual void drawHandle(float x, float y, int type) = 0;
     
-    /** 在指定中心位置显示图像. */
-    virtual void drawBitmap(GiBitmap& bitmap, float x, float y, float scale, float angle) = 0;
+    /** 在指定中心位置显示图像.
+     * @param bitmap 图像对象
+     * @param x 中心位置X
+     * @param y 中心位置Y
+     * @param widthmm 图像宽度对应的毫米数
+     * @param angle 旋转角度，正方向为世界坐标系的逆时针方向
+     */
+    virtual void drawBitmap(const GiBitmap& bitmap, float x, float y, float widthmm, float angle) = 0;
+    
+    /** 在指定中心位置以指定的字体像素大小显示一行文字内容.
+     * @param text 一行文字内容，可以有汉字
+     * @param x 中心位置X
+     * @param y 中心位置Y
+     * @param h 字体像素大小，字体磅大小=72*h/dpi
+     * @param align 水平对齐方式，0-左，1-居中，2-右
+     */
+    virtual void drawTextAt(const char* text, float x, float y, float h, int align) = 0;
 };
 
 #endif // TOUCHVG_GICANVAS_H

@@ -176,6 +176,10 @@ void GiQuartzCanvas::drawHandle(float, float, int)
 {
 }
 
-void GiQuartzCanvas::drawBitmap(GiBitmap&, float, float, float, float)
+void GiQuartzCanvas::drawBitmap(const GiBitmap&, float, float, float, float)
+{
+}
+
+void GiQuartzCanvas::drawTextAt(const char*, float, float, float, int)
 {
 }

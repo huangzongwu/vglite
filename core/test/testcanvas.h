@@ -7,9 +7,9 @@
 struct GiCanvas;
 
 struct TestCanvas {
-    static void initRand(unsigned seed = 99999);
+    static void initRand();
     static int randInt(int minv, int maxv);
-    static float randFloat(float minv, float maxv, float div = 10.f);
+    static float randFloat(float minv, float maxv);
 
     static void testRect(GiCanvas* canvas);
     static void testLine(GiCanvas* canvas);

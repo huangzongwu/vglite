@@ -8,9 +8,9 @@
 #include "gicanvas.h"
 #include <stdlib.h>
 
-void TestCanvas::initRand(unsigned seed)
+void TestCanvas::initRand()
 {
-    srand(seed);
+    srand(9999);
 }
 
 int TestCanvas::randInt(int minv, int maxv)
@@ -18,8 +18,9 @@ int TestCanvas::randInt(int minv, int maxv)
     return rand() % (maxv - minv + 1) + minv;
 }
 
-float TestCanvas::randFloat(float minv, float maxv, float div)
+float TestCanvas::randFloat(float minv, float maxv)
 {
+    float div = 10.f;
     int range = (int)((maxv - minv) * div);
     return (float)(rand() % range) / div + minv;
 }
