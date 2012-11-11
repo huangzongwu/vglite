@@ -19,4 +19,5 @@ struct TestCanvas {
     static void testPolygon(GiCanvas* canvas);
     
     static void testClipPath(GiCanvas* canvas);
+    static void testHandle(GiCanvas* canvas);
 };

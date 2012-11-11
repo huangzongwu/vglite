@@ -1,5 +1,5 @@
 /**
- * @file GiQuartzCanvas.cpp
+ * @file GiQuartzCanvas.mm
  * @copyright GNU LGPL v3, https://github.com/rhcad/touchvg
  * @author Zhang Yungui
  * @version 1.0, 2012-9-21
@@ -172,12 +172,44 @@ void GiQuartzCanvas::clipPath()
     CGContextClip(_ctx);
 }
 
-void GiQuartzCanvas::drawHandle(float, float, int)
+void GiQuartzCanvas::drawHandle(float x, float y, int type)
 {
+    if (type >= 0 && type < 4) {
+        NSString *names[] = { @"vgdot1.png", @"vgdot2.png", @"vgdot1.png", @"app57.png" };
+        UIImage *image = [UIImage imageNamed:names[type]];
+        if (image) {
+            CGImageRef img = [image CGImage];
+            float w = CGImageGetWidth(img);
+            float h = CGImageGetHeight(img);
+            
+            CGAffineTransform af = CGAffineTransformMake(1, 0, 0, -1, x - w * 0.5f, y + h * 0.5f);
+            CGContextConcatCTM(_ctx, af);
+            CGContextDrawImage(_ctx, CGRectMake(0, 0, w, h), img);
+            CGContextConcatCTM(_ctx, CGAffineTransformInvert(af));
+            
+            // 如果使用下面一行显示，则图像是上下颠倒的:
+            // CGContextDrawImage(_ctx, CGRectMake(x - w * 0.5f, y - h * 0.5f, w, h), img);
+        }
+    }
 }
 
-void GiQuartzCanvas::drawBitmap(const GiBitmap&, float, float, float, float)
+void GiQuartzCanvas::drawBitmap(const GiBitmap&, float x, float y, 
+                                float dpix, float dpiy, float angle)
 {
+    if (dpiy < 1) dpiy = dpix;
+    
+    UIImage *image = [UIImage imageNamed:@"app57.png"];
+    if (image) {
+        CGImageRef img = [image CGImage];
+        float w = CGImageGetWidth(img) * dpix / 200;
+        float h = CGImageGetHeight(img) * dpiy / 200;
+        
+        CGAffineTransform af = CGAffineTransformMake(1, 0, 0, -1, x, y);
+        af = CGAffineTransformRotate(af, angle);
+        CGContextConcatCTM(_ctx, af);
+        CGContextDrawImage(_ctx, CGRectMake(-w/2, -h/2, w, h), img);
+        CGContextConcatCTM(_ctx, CGAffineTransformInvert(af));
+    }
 }
 
 void GiQuartzCanvas::drawTextAt(const char*, float, float, float, int)

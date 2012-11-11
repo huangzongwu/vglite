@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @file GiCanvasEx.java
  * @copyright GNU LGPL v3, https://github.com/rhcad/touchvg
  * @author Zhang Yungui
@@ -9,6 +9,7 @@ package touchvg.canvas;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.DashPathEffect;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PathEffect;
@@ -27,6 +28,7 @@ public class GiCanvasEx extends GiCanvas {
     private static final float patDot[]       = { 1, 2 };
     private static final float patDashDot[]   = { 10, 2, 2, 2 };
     private static final float dashDotdot[]   = { 20, 2, 2, 2, 2, 2 };
+    private Bitmap[] mBitmaps;
     
     static {
         System.loadLibrary("touchvg");
@@ -212,18 +214,33 @@ public class GiCanvasEx extends GiCanvas {
         mCanvas.clipPath(mPath);
     }
     
-    private Bitmap getHandleBitmap() { return null; }
+    public void setBitmaps(Bitmap[] bmps) {
+    	mBitmaps = bmps;
+    }
+    
+    public Bitmap getHandleBitmap(int type) {
+    	return type < mBitmaps.length ? mBitmaps[type] : null;
+    }
     
     @Override
     public void drawHandle(float x, float y, int type) {
-        Bitmap bmp = getHandleBitmap();
+        Bitmap bmp = getHandleBitmap(type);
         if (bmp != null) {
             mCanvas.drawBitmap(bmp, x - bmp.getWidth() / 2, y - bmp.getHeight() / 2, null);
         }
     }
     
     @Override
-    public void drawBitmap(GiBitmap bitmap, float x, float y, float dpi, float angle) {
+    public void drawBitmap(GiBitmap bitmap, float x, float y,
+                           float dpix, float dpiy, float angle) {
+    	Bitmap bmp = getHandleBitmap(3);
+    	if (bmp != null) {
+    		Matrix mat = new Matrix();
+    		mat.postRotate(angle);
+    		mat.postScale(dpix / 200, dpiy / 200);
+    		mat.postTranslate(x, y);
+    		mCanvas.drawBitmap(bmp, mat, null);
+    	}
     }
     
     @Override

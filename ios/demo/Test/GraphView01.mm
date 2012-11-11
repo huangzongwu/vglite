@@ -127,11 +127,12 @@
         TestCanvas::testCubicBezier(canvas);
     if (tests & 0x40)
         TestCanvas::testPolygon(canvas);
-    if (tests & 0x80) {
+    if (tests & 0x80)
         canvas->clearRect(100, 100, 400, 400);
-    }
     if (tests & 0x100)
         TestCanvas::testClipPath(canvas);
+    if (tests & 0x200)
+        TestCanvas::testHandle(canvas);
 }
 
 @end

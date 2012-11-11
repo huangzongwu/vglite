@@ -103,10 +103,12 @@ public:
      * @param bitmap 图像对象，由设备相关实现类决定对象细节
      * @param x 图像中心位置X
      * @param y 图像中心位置Y
-     * @param dpi 每英寸要显示的图像像素数，值越大显示图像越小
+     * @param dpix X方向每英寸要显示的图像像素数，值越大显示图像越小
+     * @param dpi Y方向每英寸要显示的图像像素数，小于1则与dpix相同
      * @param angle 旋转角度，正方向为世界坐标系的逆时针方向
      */
-    virtual void drawBitmap(const GiBitmap& bitmap, float x, float y, float dpi, float angle) = 0;
+    virtual void drawBitmap(const GiBitmap& bitmap, float x, float y, 
+                            float dpix, float dpiy, float angle) = 0;
     
     /** 以指定的字体像素大小显示一行文字内容.
      * 使用当前字体和当前填充颜色显示文字.

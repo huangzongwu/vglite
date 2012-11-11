@@ -164,3 +164,17 @@ void TestCanvas::testClipPath(GiCanvas* canvas)
         canvas->restoreClip();
     }
 }
+
+void TestCanvas::testHandle(GiCanvas* canvas)
+{
+    canvas->drawLine(0, 40, 350, 40);
+    canvas->drawLine(0, 120, 350, 120);
+    canvas->drawLine(0, 200, 350, 200);
+    for (int i = 0; i < 6; i++) {
+        canvas->drawLine(50 + i * 50, 0, 50 + i * 50, 250);
+        canvas->drawHandle(50 + i * 50, 40, i);
+        GiBitmap tmp;
+        canvas->drawBitmap(tmp, 50 + i * 50, 120, 50 + i * 50, 0, 0);
+        canvas->drawBitmap(tmp, 50 + i * 50, 200, 200, 0, 3.1416f * i / 6);
+    }
+}

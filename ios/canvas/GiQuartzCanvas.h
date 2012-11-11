@@ -36,7 +36,8 @@ public:
     void clipRect(float x, float y, float w, float h);
     void clipPath();
     void drawHandle(float x, float y, int type);
-    void drawBitmap(const GiBitmap& bitmap, float x, float y, float dpi, float angle);
+    void drawBitmap(const GiBitmap& bitmap, float x, float y, 
+                    float dpix, float dpiy, float angle);
     void drawTextAt(const char* text, float x, float y, float h, int align);
     
 private:
