@@ -85,32 +85,33 @@ public:
     virtual void restoreClip() = 0;
 	
     /** 设置剪裁区域为当前剪裁区域与给定矩形的交集.
-	 * 给定矩形的宽高不一定为正数，所设置的剪裁区域影响后续绘图，可能会清除当前路径.
-	 * @see saveClip, restoreClip
-	 */
+     * 给定矩形的宽高不一定为正数，所设置的剪裁区域影响后续绘图，可能会清除当前路径.
+     * @see saveClip, restoreClip
+     */
     virtual void clipRect(float x, float y, float w, float h) = 0;
 	
     /** 设置剪裁区域为当前剪裁区域与当前路径的交集.
-	 * 调用 beginPath() 等函数设置当前路径，由于 drawPath() 会清除当前路径，所以 clipPath() 要先于 drawPath() 调用.
-	 * @see saveClip, restoreClip, beginPath
-	 */
+     * 调用 beginPath() 等函数设置当前路径，由于 drawPath() 会清除当前路径，所以 clipPath() 要先于 drawPath() 调用.
+     * @see saveClip, restoreClip, beginPath
+     */
     virtual void clipPath() = 0;
     
-    /** 在给定中心位置显示特殊符号. */
+    /** 在给定中心位置显示特殊符号. type: 0-顶点，1-活动点，2-左旋，3-右旋. */
     virtual void drawHandle(float x, float y, int type) = 0;
     
     /** 在指定中心位置显示图像.
-     * @param bitmap 图像对象
-     * @param x 中心位置X
-     * @param y 中心位置Y
-     * @param widthmm 图像宽度对应的毫米数
+     * @param bitmap 图像对象，由设备相关实现类决定对象细节
+     * @param x 图像中心位置X
+     * @param y 图像中心位置Y
+     * @param dpi 每英寸要显示的图像像素数，值越大显示图像越小
      * @param angle 旋转角度，正方向为世界坐标系的逆时针方向
      */
-    virtual void drawBitmap(const GiBitmap& bitmap, float x, float y, float widthmm, float angle) = 0;
+    virtual void drawBitmap(const GiBitmap& bitmap, float x, float y, float dpi, float angle) = 0;
     
-    /** 在指定中心位置以指定的字体像素大小显示一行文字内容.
+    /** 以指定的字体像素大小显示一行文字内容.
+     * 使用当前字体和当前填充颜色显示文字.
      * @param text 一行文字内容，可以有汉字
-     * @param x 中心位置X
+     * @param x 水平对齐位置X
      * @param y 中心位置Y
      * @param h 字体像素大小，字体磅大小=72*h/dpi
      * @param align 水平对齐方式，0-左，1-居中，2-右

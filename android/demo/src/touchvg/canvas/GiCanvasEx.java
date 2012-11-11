@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @file GiCanvasEx.java
  * @copyright GNU LGPL v3, https://github.com/rhcad/touchvg
  * @author Zhang Yungui
@@ -223,8 +223,7 @@ public class GiCanvasEx extends GiCanvas {
     }
     
     @Override
-    public void drawBitmap(GiBitmap bitmap, float x, float y,
-                           float widthmm, float angle) {
+    public void drawBitmap(GiBitmap bitmap, float x, float y, float dpi, float angle) {
     }
     
     @Override

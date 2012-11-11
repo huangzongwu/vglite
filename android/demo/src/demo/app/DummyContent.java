@@ -41,6 +41,7 @@ public class DummyContent {
     	addItem("demo.view.GraphView01", 0x40, "testPolygon");
         addItem("demo.view.GraphView01", 0x80|0x40|0x02, "testClearRect");
         addItem("demo.view.GraphView01", 0x100, "testClipPath");
+        addItem("demo.view.GraphView01", 0x200, "testHandle");
     }
     
     private static void addItem(String id, int flags, String title) {
