@@ -15,7 +15,6 @@ import android.graphics.Path;
 import android.graphics.PathEffect;
 import android.graphics.RectF;
 import touchvg.jni.GiCanvas;
-import touchvg.jni.GiBitmap;
 
 public class GiCanvasEx extends GiCanvas {
     private Path mPath = null;
@@ -231,14 +230,14 @@ public class GiCanvasEx extends GiCanvas {
     }
     
     @Override
-    public void drawBitmap(GiBitmap bitmap, float x, float y,
-                           float dpix, float dpiy, float angle) {
+    public void drawBitmap(String name, float xc, float yc,
+                           float w, float h, float angle) {
     	Bitmap bmp = getHandleBitmap(3);
-    	if (bmp != null) {
+    	if (bmp != null && bmp.getWidth() > 0) {
     		Matrix mat = new Matrix();
     		mat.postRotate(angle);
-    		mat.postScale(dpix / 200, dpiy / 200);
-    		mat.postTranslate(x, y);
+    		mat.postScale(w / bmp.getWidth(), h / bmp.getHeight());
+    		mat.postTranslate(xc, yc);
     		mCanvas.drawBitmap(bmp, mat, null);
     	}
     }

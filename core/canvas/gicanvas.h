@@ -7,15 +7,6 @@
 #ifndef TOUCHVG_GICANVAS_H
 #define TOUCHVG_GICANVAS_H
 
-/** 设备相关的图像接口.
- * @ingroup GROUP_CANVAS
- */
-class GiBitmap
-{
-public:
-    virtual ~GiBitmap() {}
-};
-
 /** 设备相关的画布接口.
  * 在派生类中使用某一种图形库实现其绘图函数，坐标单位为点或像素.
  * 默认绘图属性为：黑色画笔、线宽=1、实线、反走样、不填充.
@@ -100,15 +91,15 @@ public:
     virtual void drawHandle(float x, float y, int type) = 0;
     
     /** 在指定中心位置显示图像.
-     * @param bitmap 图像对象，由设备相关实现类决定对象细节
-     * @param x 图像中心位置X
-     * @param y 图像中心位置Y
-     * @param dpix X方向每英寸要显示的图像像素数，值越大显示图像越小
-     * @param dpi Y方向每英寸要显示的图像像素数，小于1则与dpix相同
+     * @param name 图像标识，通常为不带路径的文件名，由设备相关实现类决定图像存放位置
+     * @param xc 图像中心位置X
+     * @param yc 图像中心位置Y
+     * @param w 图像显示宽度
+     * @param h 图像显示高度
      * @param angle 旋转角度，正方向为世界坐标系的逆时针方向
      */
-    virtual void drawBitmap(const GiBitmap& bitmap, float x, float y, 
-                            float dpix, float dpiy, float angle) = 0;
+    virtual void drawBitmap(const char* name, float xc, float yc, 
+                            float w, float h, float angle) = 0;
     
     /** 以指定的字体像素大小显示一行文字内容.
      * 使用当前字体和当前填充颜色显示文字.

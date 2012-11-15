@@ -193,18 +193,13 @@ void GiQuartzCanvas::drawHandle(float x, float y, int type)
     }
 }
 
-void GiQuartzCanvas::drawBitmap(const GiBitmap&, float x, float y, 
-                                float dpix, float dpiy, float angle)
+void GiQuartzCanvas::drawBitmap(const char* name, float xc, float yc, 
+                                float w, float h, float angle)
 {
-    if (dpiy < 1) dpiy = dpix;
-    
     UIImage *image = [UIImage imageNamed:@"app57.png"];
     if (image) {
         CGImageRef img = [image CGImage];
-        float w = CGImageGetWidth(img) * dpix / 200;
-        float h = CGImageGetHeight(img) * dpiy / 200;
-        
-        CGAffineTransform af = CGAffineTransformMake(1, 0, 0, -1, x, y);
+        CGAffineTransform af = CGAffineTransformMake(1, 0, 0, -1, xc, yc);
         af = CGAffineTransformRotate(af, angle);
         CGContextConcatCTM(_ctx, af);
         CGContextDrawImage(_ctx, CGRectMake(-w/2, -h/2, w, h), img);

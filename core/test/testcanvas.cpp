@@ -173,8 +173,7 @@ void TestCanvas::testHandle(GiCanvas* canvas)
     for (int i = 0; i < 6; i++) {
         canvas->drawLine(50 + i * 50, 0, 50 + i * 50, 250);
         canvas->drawHandle(50 + i * 50, 40, i);
-        GiBitmap tmp;
-        canvas->drawBitmap(tmp, 50 + i * 50, 120, 50 + i * 50, 0, 0);
-        canvas->drawBitmap(tmp, 50 + i * 50, 200, 200, 0, 3.1416f * i / 6);
+        canvas->drawBitmap(NULL, 50 + i * 50, 120, 10 + i * 20, 10 + i * 20, 0);
+        canvas->drawBitmap(NULL, 50 + i * 50, 200, 57, 57, 3.1416f * i / 6);
     }
 }
