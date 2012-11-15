@@ -218,7 +218,7 @@ public class GiCanvasEx extends GiCanvas {
     }
     
     public Bitmap getHandleBitmap(int type) {
-    	return type < mBitmaps.length ? mBitmaps[type] : null;
+    	return mBitmaps != null && type < mBitmaps.length ? mBitmaps[type] : null;
     }
     
     @Override
@@ -235,7 +235,8 @@ public class GiCanvasEx extends GiCanvas {
     	Bitmap bmp = getHandleBitmap(3);
     	if (bmp != null && bmp.getWidth() > 0) {
     		Matrix mat = new Matrix();
-    		mat.postRotate(angle);
+    		mat.postTranslate(-0.5f * bmp.getWidth(), -0.5f * bmp.getHeight());
+    		mat.postRotate(-angle * 180.f / 3.1415926f);
     		mat.postScale(w / bmp.getWidth(), h / bmp.getHeight());
     		mat.postTranslate(xc, yc);
     		mCanvas.drawBitmap(bmp, mat, null);
